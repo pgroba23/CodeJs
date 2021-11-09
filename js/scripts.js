@@ -1,5 +1,9 @@
 const submit = document.getElementById('boton');
 
+/*Funcion getElement*/
+
+const getElement = (campo) => document.getElementById(campo).value;
+
 /*Funciones de calculo*/
 const valorMasIva = (valor) => (valor * 21) / 100 + valor;
 const precioEnDolares = (valor) => valor / 100;
@@ -14,10 +18,10 @@ const resultadoLog = (texto, valor) => {
 };
 
 const datos = () => {
-  const nombre = document.getElementById('first-name').value;
-  const apellido = document.getElementById('last-name').value;
-  const precio = document.getElementById('precio').value;
-  const cantidad = document.getElementById('cantidad').value;
+  const nombre = getElement('first-name');
+  const apellido = getElement('last-name');
+  const precio = getElement('precio');
+  const cantidad = getElement('cantidad');
 
   resultadoLog('Nombre y Apellido: ', `${nombre} ${apellido}`);
   resultadoLog('Precio: ', precio);
