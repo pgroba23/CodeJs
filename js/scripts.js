@@ -1,35 +1,33 @@
-//console.log('hola');
-//const nombre = prompt('Ingrese su nombre');
-// const edad = parseInt(prompt('Ingrese su edad'));
-// const edad_lustro = edad + 5;
+const submit = document.getElementById('boton');
 
-// console.log('Hola ' + nombre + '!. Nos alegra verte de nuevo!');
-// console.log(
-//   'Gracias a nuestra tecnologia de avanzada podremos saber cuantos años vas a tener dentro de un lustro!'
-// );
-// console.log('Tu edad sera: ' + edad_lustro + ' años!!!');
-// if (edad_lustro <= 30) {
-//   console.log('Vos todavia no te preocupas por nada, viva la vida loca!!');
-// } else {
-//   console.log(
-//     'Uhhh eso dolio, pero bueno, lo importante es que estamos vivos no? =)'
-//   );
-// }
-// if (nombre.toUpperCase() === 'ROBERTO') {
-//   console.log(
-//     'No importa lo que diga arriba, ya con este nombre, eres un viejo igual! JAJA con amor obvio'
-//   );
-// }
+/*Funciones de calculo*/
+const valorMasIva = (valor) => (valor * 21) / 100 + valor;
+const precioEnDolares = (valor) => valor / 100;
+const impGanancias = (valor) => (valor * 65) / 100 + valor;
 
-let opcion = prompt('Desea saber cuantas letras tiene su nombre? Y/N');
-let nombre;
-if (opcion.toUpperCase() === 'Y' || opcion.toUpperCase() === 'N') {
-  while (opcion.toUpperCase() === 'Y') {
-    nombre = prompt('Ingrese su nombre');
-    alert(`Tu nombre tiene ${nombre.length} letra\s`);
-    opcion = prompt('Desea saber cuantas letras tiene otro nombre? Y/N');
-  }
-  alert('Lesto, terminamo aca!');
-} else {
-  alert('Era simple loco, Y o N, te hiciste el piola, ahora se termino!');
-}
+/*Funciones de impresion*/
+const resultadoWarn = (texto, valor) => {
+  console.warn(texto, valor);
+};
+const resultadoLog = (texto, valor) => {
+  console.log(texto, valor);
+};
+
+const datos = () => {
+  const nombre = document.getElementById('first-name').value;
+  const apellido = document.getElementById('last-name').value;
+  const precio = document.getElementById('precio').value;
+  const cantidad = document.getElementById('cantidad').value;
+
+  resultadoLog('Nombre y Apellido: ', `${nombre} ${apellido}`);
+  resultadoLog('Precio: ', precio);
+  resultadoLog('Cantidad: ', cantidad);
+
+  resultadoWarn('Precio a pagar en $: ', `$${valorMasIva(precio * cantidad)}`);
+  resultadoWarn(
+    'Precio a pagar en u$s: ',
+    `$${impGanancias(precioEnDolares(valorMasIva(precio * cantidad)))}`
+  );
+};
+
+submit.addEventListener('click', () => datos(), false);
