@@ -20,6 +20,7 @@ body {
 .button {
   position: relative;
   background-color: #3d64b9;
+  margin: 0 1rem;
   border: none;
   font-size: 10px;
   color: #ffffff;
@@ -58,9 +59,15 @@ body {
   justify-content: center;
   font-size: 4rem;
   font-weight: 700;
-  text-shadow: 10px 10px 15px;
   text-transform: uppercase;
   letter-spacing: 10px;
+  color: #fff;
+  background-color: #000;
+}
+
+.footer {
+  color: #fff;
+  background-color: #000;
 }
 
 .main {
@@ -84,6 +91,10 @@ body {
 .form-div {
   display: flex;
   padding: 1rem;
+}
+
+.form-div label {
+  margin: 0 1rem;
 }
 
 .contact-list .cards {
