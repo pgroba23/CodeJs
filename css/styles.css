@@ -142,6 +142,37 @@ body {
   margin: 1rem;
 }
 
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.details .article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.details .article .article-img {
+  max-width: 300px;
+  line-height: 0;
+}
+
+.details .article .article-img img {
+  width: 100%;
+}
+
+.details .article .article-data {
+  margin: 0 2rem;
+  line-height: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
 .col-left {
   background: rgba(54, 69, 194, 0.2);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
