@@ -68,27 +68,15 @@ Ordenamiento
   const agregarContactoLista = (contacto) => {
     //Usando innerHTML agregar nuevo contacto a la lista --ver
 
-    const div = document.createElement('div');
-    const img = document.createElement('img');
-    const nombre = document.createElement('h2');
-    const apellido = document.createElement('h2');
-    // const telefono = document.createElement('h5');
-    // const celular = document.createElement('h5');
-    // const direccion = document.createElement('small');
+    const div = document.createElement('div'),
+      img = document.createElement('img'),
+      nombre = document.createElement('h2');
 
     div.classList.add('card');
     img.src = './img/persona4.webp';
-    nombre.innerText = `${contacto.nombre}`;
-    apellido.innerText = `${contacto.apellido}`;
-    // telefono.innerText = `Telefono: ${contacto.telefono}`;
-    // celular.innerText = `Celular: ${contacto.celular}`;
-    // direccion.innerText = contacto.direccion;
+    nombre.innerText = `${contacto.nombre} ${contacto.apellido}`;
     div.append(img);
     div.append(nombre);
-    div.append(apellido);
-    // div.append(telefono);
-    // div.append(celular);
-    // div.append(direccion);
     div.id = contacto.telefono;
     div.addEventListener('click', () => cargaDatos(contacto.telefono), false);
     divCards.append(div);
