@@ -1,139 +1,83 @@
 (() => {
-  /*LocalStorage*/
-  const getStorage = () => JSON.parse(localStorage.getItem('contactos'));
-  const setStorage = (contactos) =>
-    localStorage.setItem('contactos', JSON.stringify(contactos));
-
-  /* Referencias HTML */
-  const submit = document.querySelector('#boton');
-  const ordernar = document.querySelector('#boton-ordenar');
-  const divCards = document.querySelector('#div-cards');
-  const sectionDetalle = document.querySelector('#details');
-
-  const nombre = document.querySelector('#first-name');
-  const apellido = document.querySelector('#last-name');
-  const telefono = document.querySelector('#telefono');
-  const celular = document.querySelector('#celular');
-  const direccion = document.querySelector('#direccion');
-
-  /* Reset Value */
-  const resetValue = (campo) => (campo.value = '');
-
-  /*Funciones de impresion*/
-  const resultadoWarn = (texto, valor) => {
-    console.warn(texto, valor);
-  };
-  const resultadoLog = (texto, valor) => {
-    console.log(texto, valor);
-  };
-
-  /*
-Ordenamiento
-  -ordena de menor a mayor
-  array = array a ordernar
-  prop = propiedad del objeto por la cual ordenar
-*/
-
-  const ordenaArray = (array, prop) => {
-    for (let i = 0; i < array.length - 1; i++) {
-      for (let j = i + 1; j < array.length; j++) {
-        if (array[i][prop] > array[j][prop]) {
-          let obj = array[i];
-          array[i] = array[j];
-          array[j] = obj;
-        }
-      }
-    }
-    console.warn('***Array Ordenado***');
-    console.log(array);
-  };
-
   /* Clase Contacto */
-  class Contacto {
-    constructor(dato) {
-      this.nombre = dato.nombre;
-      this.apellido = dato.apellido;
-      this.telefono = dato.telefono * 1;
-      this.celular = dato.celular * 1;
-      this.direccion = dato.direccion;
-    }
 
-    imprime() {
-      resultadoLog('Nombre y Apellido: ', `${this.nombre} ${this.apellido}`);
-      resultadoLog('Telefono y Celular: ', `${this.telefono} ${this.celular}`);
-      resultadoLog('Direccion: ', `${this.direccion}`);
-    }
-  }
+  submit.addEventListener('click', () => agregarContacto(), false);
 
-  const agregarContactoLista = (contacto) => {
-    //Usando innerHTML agregar nuevo contacto a la lista --ver
-
-    const div = document.createElement('div'),
-      img = document.createElement('img'),
-      nombre = document.createElement('h2');
-
-    div.classList.add('card');
-    img.src = './img/persona4.webp';
-    nombre.innerText = `${contacto.nombre} ${contacto.apellido}`;
-    div.append(img);
-    div.append(nombre);
-    div.id = contacto.telefono;
-    div.addEventListener('click', () => cargaDatos(contacto.telefono), false);
-    divCards.append(div);
-  };
-
-  const agregarContactos = (arrayContactos) => {
-    for (const contacto of arrayContactos) {
-      agregarContactoLista(contacto);
-    }
-  };
-
-  let arrayContactos = getStorage() ? getStorage() : [];
-  arrayContactos ? agregarContactos(arrayContactos) : null;
-
-  const buscarContacto = (id) => {
-    return arrayContactos.find((e) => e.telefono === id);
-  };
-
-  const cargaDatos = (id) => {
-    //find del elemento en el arrayContactos
-    const contacto = buscarContacto(id);
-    document.querySelector(
-      '#article-data-name'
-    ).innerHTML = `${contacto.nombre} ${contacto.apellido}`;
-    document.querySelector(
-      '#article-data-phone'
-    ).innerHTML = `${contacto.telefono} - ${contacto.celular}`;
-    document.querySelector('#article-data-address').innerHTML =
-      contacto.direccion;
-    sectionDetalle.style.display = 'inline';
-  };
-
-  const agregarContacto = () => {
-    const contacto = new Contacto({
-      nombre: nombre.value,
-      apellido: apellido.value,
-      telefono: telefono.value,
-      celular: celular.value,
-      direccion: direccion.value,
-    });
-    arrayContactos.push(contacto); //Desafio: usar metodo de array
-    //contacto.imprime();
-    setStorage(arrayContactos);
-
+  addContact.addEventListener('click', () => {
     resetValue(nombre);
     resetValue(apellido);
     resetValue(telefono);
     resetValue(celular);
     resetValue(direccion);
+  });
 
-    agregarContactoLista(contacto);
-  };
+  closeBar.addEventListener('click', () => {
+    colLeft.className = colLeft.className !== 'hide' ? 'hide col-left' : 'show';
+    window.setTimeout(() => {
+      colLeft.style.display = 'none';
+      main.style.gridTemplateColumns = 'auto';
+      openBar.style.display = 'block';
+    }, 700);
+  });
 
-  submit.addEventListener('click', () => agregarContacto(), false);
-  ordernar.addEventListener(
-    'click',
-    () => ordenaArray(arrayContactos, 'telefono'),
-    false
-  );
+  openBar.addEventListener('click', () => {
+    colLeft.className = colLeft.className !== 'show' ? 'show col-left' : 'hide';
+    window.setTimeout(() => {
+      colLeft.style.display = 'block';
+      main.style.gridTemplateColumns = '1fr 6fr';
+      openBar.style.display = 'none';
+    }, 0);
+  });
+
+  if (getStorage() && getStorage().find((e) => e.telefono === 11111111)) {
+    cincoContactos.textContent = 'Ya lo usaste';
+    cincoContactos.disabled = true;
+    cincoContactos.style.background = 'grey';
+  } else {
+    cincoContactos.addEventListener('click', () => {
+      const arrayRandom = [
+        new Contacto({
+          nombre: 'Pablo',
+          apellido: 'Groba',
+          telefono: 11111111,
+          celular: 22222222,
+          direccion: 'La pampa 123',
+        }),
+        new Contacto({
+          nombre: 'Carlos',
+          apellido: 'Garcia',
+          telefono: 3333333,
+          celular: 4444444,
+          direccion: 'La chimba 123',
+        }),
+        new Contacto({
+          nombre: 'Jose',
+          apellido: 'Perez',
+          telefono: 5555555,
+          celular: 6666666,
+          direccion: 'Doble H 123',
+        }),
+        new Contacto({
+          nombre: 'Gaston',
+          apellido: 'Rodriguez',
+          telefono: 77777777,
+          celular: 8888888,
+          direccion: 'La salta 123',
+        }),
+        new Contacto({
+          nombre: 'Pedro',
+          apellido: 'Alfonso',
+          telefono: 9999999,
+          celular: 000000,
+          direccion: 'White 123',
+        }),
+      ];
+      setStorage(arrayRandom);
+      arrayContactos = getStorage();
+      agregarContactos(arrayRandom);
+      cincoContactos.textContent = 'Ya lo usaste';
+      cincoContactos.style.background = 'grey';
+      cincoContactos.disabled = true;
+    });
+  }
 })();

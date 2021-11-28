@@ -17,6 +17,28 @@ body {
   grid-template-rows: auto 1fr auto;
 }
 
+/*Scroll bar*/
+
+/* width */
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: darkgrey;
+}
+
 .button {
   position: relative;
   background-color: #3d64b9;
@@ -72,7 +94,9 @@ body {
 
 .main {
   display: grid;
-  grid-template-columns: 1fr 6fr;
+  grid-template-columns: auto 6fr;
+  justify-content: center;
+  position: relative;
   background-color: rgba(54, 69, 194, 0.2);
 }
 
@@ -209,6 +233,8 @@ body {
   -webkit-backdrop-filter: blur(1.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  overflow-y: auto;
+  position: relative;
 }
 
 .add-contact {
@@ -222,6 +248,24 @@ body {
   cursor: pointer;
 }
 
+.close-bar {
+  position: absolute;
+  top: 0;
+  left: 90%;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.open-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  display: none;
+}
+
 .contact-list {
   padding: 1rem;
 }
@@ -229,4 +273,66 @@ body {
 .footer {
   height: 5vh;
   font-size: 1rem;
+}
+
+/*Menu*/
+
+@-webkit-keyframes in {
+  0% {
+    -webkit-transform: scale(0) rotate(12deg);
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    -webkit-transform: scale(1) rotate(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes in {
+  0% {
+    transform: scale(0) rotate(12deg);
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@-webkit-keyframes out {
+  0% {
+    -webkit-transform: scale(1) rotate(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    -webkit-transform: scale(0) rotate(-12deg);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+#col-left.show {
+  -webkit-animation: fadeInLeft 700ms ease both;
+  animation: fadeInLeft 700ms ease both;
+}
+
+#col-left.hide {
+  -webkit-animation: out 700ms ease both;
+  animation: out 700ms ease both;
 }

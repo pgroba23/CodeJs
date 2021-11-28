@@ -11,18 +11,31 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <link rel="stylesheet" href="./css/styles.css" />
     <title>Agenda</title>
   </head>
   <body>
     <header class="header">Agenda</header>
     <main class="main">
-      <aside class="col-left">
-        <div class="add-contact">
+      <div class="open-bar" id="open-bar">
+        <i class="fas fa-bars"></i>
+      </div>
+      <aside
+        class="col-left animate__animated animate__fadeInLeft"
+        id="col-left"
+      >
+        <div class="add-contact" id="add-contact">
           <i
             class="far fa-calendar-plus add-contact"
             title="Agregar contacto"
           ></i>
+        </div>
+        <div class="close-bar" id="close-bar">
+          <i class="fas fa-times"></i>
         </div>
         <hr />
         <div class="contact-list">
@@ -62,19 +75,18 @@
           <button
             class="button"
             type="button"
-            id="boton-ordenar"
-            name="boton-ordenar"
+            id="boton-automatico"
+            name="boton-automatico"
           >
-            Ordenar
+            5 contactos
           </button>
         </div>
-        <!-- <section class="contact-list">
-          <h2>Lista de contactos</h2>
-          <div class="cards" id="div-cards"></div> 
-        </section> -->
         <section id="details" class="details">
           <h2>Detalle</h2>
-          <article id="article-details" class="article">
+          <article
+            id="article-details"
+            class="article animate__animated animate__fadeIn"
+          >
             <div class="article-img">
               <img src="./img/persona4.webp" alt="" />
             </div>
@@ -88,6 +100,10 @@
       </aside>
     </main>
     <footer class="footer">Copyright</footer>
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+    <script src="./js/querySelectors.js"></script>
+    <script src="./js/classes.js"></script>
+    <script src="./js/functions.js"></script>
     <script src="./js/scripts.js"></script>
   </body>
 </html>
