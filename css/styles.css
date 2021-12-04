@@ -207,6 +207,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .details .article .article-img {
@@ -219,11 +220,22 @@ body {
 }
 
 .details .article .article-data {
-  margin: 0 2rem;
   line-height: 3rem;
   font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   letter-spacing: 2px;
   text-transform: uppercase;
+  background: linear-gradient(to left, #28349367, #1976d24d);
+  border: 1px solid;
+  width: 300px;
+  height: 300px;
+}
+
+.details .article .article-data h2 {
+  letter-spacing: 4px;
 }
 
 .col-left {

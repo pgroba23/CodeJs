@@ -17,6 +17,14 @@ const resultadoLog = (texto, valor) => {
   console.log(texto, valor);
 };
 
+const modificarDatos = (contacto) => {
+  console.log('Modificar: ', contacto);
+};
+
+const borrarDatos = (contacto) => {
+  console.log('Borrar: ', contacto);
+};
+
 const cargaDatos = (id) => {
   //find del elemento en el arrayContactos
   const contacto = buscarContacto(id);
@@ -24,12 +32,20 @@ const cargaDatos = (id) => {
 
   document.querySelector(
     '#article-data-name'
-  ).innerHTML = `${contacto.nombre} ${contacto.apellido}`;
+  ).innerHTML = `😀 ${contacto.nombre} ${contacto.apellido}`;
   document.querySelector(
     '#article-data-phone'
-  ).innerHTML = `${contacto.telefono} - ${contacto.celular}`;
-  document.querySelector('#article-data-address').innerHTML =
-    contacto.direccion;
+  ).innerHTML = `📞 ${contacto.telefono} - ${contacto.celular}`;
+  document.querySelector(
+    '#article-data-address'
+  ).innerHTML = `📭 ${contacto.direccion}`;
+  document
+    .querySelector('#article-m')
+    .addEventListener('click', () => modificarDatos(contacto));
+  document
+    .querySelector('#article-b')
+    .addEventListener('click', () => borrarDatos(contacto));
+
   window.setTimeout(() => {
     sectionDetalle.style.display = 'block';
   }, 500);
@@ -110,3 +126,19 @@ const validarForm = () => {
   }
   return true;
 };
+
+/* Codigo jQuery que luego sera removido =) */
+$(() => {
+  const jquery = () => {
+    const section = $('#section-jquery');
+    section[0].innerHTML = `<br><br>
+                            <div>
+                              <h1>Probando Jquery</h1>
+                              <h1>Esto es para pasar el desafio y luego se va!! No lo extrañen!!</h1>
+                              <button id='close-jquery' class='button'>Cerrar</button>
+                            </div>`;
+    $('#close-jquery').click(() => (section[0].innerHTML = ''));
+  };
+
+  $('#boton-jquery').click(() => jquery());
+});
