@@ -75,22 +75,13 @@
           <button
             class="button"
             type="button"
-            id="boton-automatico"
-            name="boton-automatico"
-          >
-            5 contactos
-          </button>
-          <button
-            class="button"
-            type="button"
             id="boton-jquery"
             name="boton-jquery"
           >
-            JQUERY
+            Cerrar
           </button>
         </div>
         <section id="details" class="details">
-          <h2>Detalle</h2>
           <article
             id="article-details"
             class="article animate__animated animate__fadeIn"
@@ -98,12 +89,17 @@
             <div class="article-img">
               <img src="./img/persona4.webp" alt="" />
             </div>
-            <div class="article-data">
+            <div class="article-data" id="article-data">
               <h2 id="article-data-name">Nombre</h2>
               <h3 id="article-data-phone">telefono</h3>
               <h4 id="article-data-address">Direccion</h4>
-              <button id="article-m" class="button">Modificar</button
-              ><button id="article-b" class="button">Borrar</button>
+              <button id="article-m" class="button" onclick="modificarDatos()">
+                Modificar
+              </button>
+              <button id="article-b" class="button" onclick="borrarDatos()">
+                Borrar
+              </button>
+              <input type="hidden" id="contacto-id" />
             </div>
           </article>
         </section>

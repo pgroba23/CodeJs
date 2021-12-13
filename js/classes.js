@@ -5,6 +5,7 @@ class Contacto {
     this.telefono = dato.telefono * 1;
     this.celular = dato.celular * 1;
     this.direccion = dato.direccion;
+    this.id = 0;
   }
 
   imprime() {

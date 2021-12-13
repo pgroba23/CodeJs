@@ -17,18 +17,27 @@ const resultadoLog = (texto, valor) => {
   console.log(texto, valor);
 };
 
-const modificarDatos = (contacto) => {
-  console.log('Modificar: ', contacto);
+const modificarDatos = () => {
+  const contacto = buscarContacto(
+    document.querySelector('#contacto-id').value * 1
+  );
+
+  $('.form-div').slideDown('slow');
+
+  nombre.value = contacto.nombre;
+  apellido.value = contacto.apellido;
+  telefono.value = contacto.telefono;
+  celular.value = contacto.celular;
+  direccion.value = direccion.celular;
 };
 
-const borrarDatos = (contacto) => {
-  console.log('Borrar: ', contacto);
-};
+const borrarDatos = () => {};
 
 const cargaDatos = (id) => {
   //find del elemento en el arrayContactos
   const contacto = buscarContacto(id);
-  sectionDetalle.style.display = 'none';
+  // sectionDetalle.style.display = 'none';
+  $(sectionDetalle).hide();
 
   document.querySelector(
     '#article-data-name'
@@ -39,20 +48,15 @@ const cargaDatos = (id) => {
   document.querySelector(
     '#article-data-address'
   ).innerHTML = `📭 ${contacto.direccion}`;
-  document
-    .querySelector('#article-m')
-    .addEventListener('click', () => modificarDatos(contacto));
-  document
-    .querySelector('#article-b')
-    .addEventListener('click', () => borrarDatos(contacto));
+  document.querySelector('#contacto-id').value = contacto.id;
 
   window.setTimeout(() => {
-    sectionDetalle.style.display = 'block';
+    $(sectionDetalle).show(() => $('.form-div').slideUp('slow'));
   }, 500);
 };
 
 const buscarContacto = (id) => {
-  return arrayContactos.find((e) => e.telefono === id);
+  return arrayContactos.find((e) => e.id === id);
 };
 
 const agregarContacto = () => {
@@ -64,6 +68,7 @@ const agregarContacto = () => {
       celular: celular.value,
       direccion: direccion.value,
     });
+    contacto['id'] = arrayContactos.length + 1;
     arrayContactos.push(contacto); //Desafio: usar metodo de array
     //contacto.imprime();
     setStorage(arrayContactos);
@@ -88,8 +93,8 @@ const agregarContactoLista = (contacto) => {
   nombre.innerText = `${contacto.nombre} ${contacto.apellido}`;
   div.append(img);
   div.append(nombre);
-  div.id = contacto.telefono;
-  div.addEventListener('click', () => cargaDatos(contacto.telefono), false);
+  div.id = contacto.id;
+  div.addEventListener('click', () => cargaDatos(contacto.id), false);
   divCards.append(div);
 };
 
@@ -129,16 +134,7 @@ const validarForm = () => {
 
 /* Codigo jQuery que luego sera removido =) */
 $(() => {
-  const jquery = () => {
-    const section = $('#section-jquery');
-    section[0].innerHTML = `<br><br>
-                            <div>
-                              <h1>Probando Jquery</h1>
-                              <h1>Esto es para pasar el desafio y luego se va!! No lo extrañen!!</h1>
-                              <button id='close-jquery' class='button'>Cerrar</button>
-                            </div>`;
-    $('#close-jquery').click(() => (section[0].innerHTML = ''));
-  };
-
-  $('#boton-jquery').click(() => jquery());
+  $('#boton-jquery').click(() => {
+    $('.form-div').slideUp('slow');
+  });
 });

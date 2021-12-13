@@ -7,8 +7,7 @@ const submit = document.querySelector('#boton'),
   closeBar = document.querySelector('#close-bar'),
   colLeft = document.querySelector('#col-left'),
   main = document.querySelector('.main'),
-  openBar = document.querySelector('#open-bar'),
-  cincoContactos = document.querySelector('#boton-automatico');
+  openBar = document.querySelector('#open-bar');
 
 const nombre = document.querySelector('#first-name'),
   apellido = document.querySelector('#last-name'),
