@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,88 +15,354 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./css/styles.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            gridTemplateRows: {
+              // Simple 8 row grid
+              auto: 'auto 1fr auto',
+            },
+            colors: {
+              glass: '#8bbce944',
+            },
+          },
+        },
+      };
+    </script>
     <title>Agenda</title>
   </head>
-  <body>
-    <header class="header">Agenda</header>
-    <main class="main">
-      <div class="open-bar" id="open-bar">
+  <body class="grid grid-rows-auto h-screen container mx-auto">
+    <header
+      class="
+        header
+        bg-black
+        text-white text-center
+        p-4
+        tracking-widest
+        font-bold
+        text-4xl
+        uppercase
+      "
+    >
+      Agenda
+    </header>
+    <main class="main grid grid-cols-7">
+      <!-- <div class="open-bar" id="open-bar">
         <i class="fas fa-bars"></i>
-      </div>
+      </div> -->
       <aside
-        class="col-left animate__animated animate__fadeInLeft"
+        class="col-span-1 col-left animate__animated animate__fadeInLeft"
         id="col-left"
       >
-        <div class="add-contact" id="add-contact">
+        <div class="add-contact flex justify-center mb-4" id="add-contact">
           <i
-            class="far fa-calendar-plus add-contact"
+            class="far fa-calendar-plus add-contact text-8xl cursor-pointer"
             title="Agregar contacto"
           ></i>
         </div>
-        <div class="close-bar" id="close-bar">
+        <hr />
+        <div
+          class="close-bar absolute top-0 left-[90%] text-xl cursor-pointer"
+          id="close-bar"
+        >
           <i class="fas fa-times"></i>
         </div>
-        <hr />
-        <div class="contact-list">
-          <h2>Lista de contactos</h2>
-          <div class="cards" id="div-cards"></div>
+        <!-- <hr /> -->
+        <div class="contact-list relative">
+          <h2 class="text-xl text-center p-4">Lista de contactos</h2>
+          <div
+            class="cards flex flex-col overflow-y-auto absolute"
+            id="div-cards"
+          ></div>
         </div>
       </aside>
-      <aside class="col-right">
-        <h1 class="col-right-title">Contacto</h1>
-        <div class="form-div">
-          <label for="first-name">Nombre</label>
-          <input type="text" name="first-name" id="first-name" />
-          <label for="last-name">Apellido</label>
-          <input type="text" name="last-name" id="last-name" />
+      <aside class="col-span-6 col-right">
+        <h1
+          class="
+            backdrop-opacity-60
+            bg-glass
+            text-center text-2xl
+            font-bold
+            py-2
+            col-right-title
+          "
+        >
+          Contacto
+        </h1>
+        <i id="open-bar" class="fas fa-bars hidden"></i>
+        <div class="flex gap-4 justify-center mb-4 py-4">
+          <div class="form-div">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="first-name"
+              >Nombre</label
+            >
+            <input
+              class="
+                shadow
+                appearance-none
+                border
+                rounded
+                py-2
+                px-3
+                text-gray-700
+                leading-tight
+                focus:outline-none focus:shadow-outline
+              "
+              type="text"
+              name="first-name"
+              id="first-name"
+            />
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="last-name"
+              >Apellido</label
+            >
+            <input
+              class="
+                shadow
+                appearance-none
+                border
+                rounded
+                py-2
+                px-3
+                text-gray-700
+                leading-tight
+                focus:outline-none focus:shadow-outline
+              "
+              type="text"
+              name="last-name"
+              id="last-name"
+            />
+          </div>
+          <div class="form-div">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="telefono"
+              >Telefono</label
+            >
+            <input
+              class="
+                shadow
+                appearance-none
+                border
+                rounded
+                py-2
+                px-3
+                text-gray-700
+                leading-tight
+                focus:outline-none focus:shadow-outline
+              "
+              type="text"
+              name="telefono"
+              id="telefono"
+            />
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="celular"
+              >Celular</label
+            >
+            <input
+              class="
+                shadow
+                appearance-none
+                border
+                rounded
+                py-2
+                px-3
+                text-gray-700
+                leading-tight
+                focus:outline-none focus:shadow-outline
+              "
+              type="text"
+              name="celular"
+              id="celular"
+            />
+          </div>
+          <div class="form-div">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="direccion"
+              >Direccion</label
+            >
+            <input
+              class="
+                shadow
+                appearance-none
+                border
+                rounded
+                py-2
+                px-3
+                text-gray-700
+                leading-tight
+                focus:outline-none focus:shadow-outline
+              "
+              type="text"
+              name="direccion"
+              id="direccion"
+            />
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="imagen"
+              >Imagen</label
+            >
+            <input
+              type="text"
+              name="imagen"
+              id="imagen"
+              class="
+                shadow
+                appearance-none
+                border
+                rounded
+                py-2
+                px-3
+                text-gray-700
+                leading-tight
+                focus:outline-none focus:shadow-outline
+              "
+              placeholder="Aun no funciona =)"
+            />
+          </div>
         </div>
-        <div class="form-div">
-          <label for="telefono">Telefono</label>
-          <input type="number" name="telefono" id="telefono" />
-          <label for="celular">Celular</label>
-          <input type="number" name="celular" id="celular" />
-        </div>
-        <div class="form-div">
-          <label for="direccion">Direccion</label>
-          <input type="text" name="direccion" id="direccion" />
-          <label for="imagen">Imagen</label>
-          <input
-            type="text"
-            name="imagen"
-            id="imagen"
-            placeholder="Aun no funciona =)"
-          />
-        </div>
-        <div class="form-div">
-          <button class="button" type="button" id="boton" name="boton">
+        <div class="form-div text-center">
+          <button
+            class="
+              bg-teal-500
+              hover:bg-teal-700
+              border-teal-500
+              hover:border-teal-700
+              text-md
+              border-4
+              text-white
+              py-1
+              px-2
+              rounded
+            "
+            type="button"
+            id="boton"
+            name="boton"
+          >
             Agregar
           </button>
           <button
-            class="button"
+            class="
+              bg-red-500
+              hover:bg-red-700
+              border-red-500
+              hover:border-red-700
+              text-md
+              border-4
+              text-white
+              py-1
+              px-2
+              rounded
+            "
             type="button"
             id="boton-jquery"
             name="boton-jquery"
           >
             Cerrar
           </button>
+          <button
+            class="
+              bg-teal-500
+              hover:bg-teal-700
+              border-teal-500
+              hover:border-red-700
+              text-md
+              border-4
+              text-white
+              py-1
+              px-2
+              rounded
+            "
+            type="button"
+            id="boton-ajax"
+            name="boton-ajax"
+          >
+            Contacto Random
+          </button>
         </div>
-        <section id="details" class="details">
+        <section
+          id="details"
+          class="
+            details
+            text-center
+            my-5
+            flex
+            justify-center
+            items-center
+            hidden
+          "
+        >
           <article
             id="article-details"
-            class="article animate__animated animate__fadeIn"
+            class="
+              article
+              animate__animated animate__fadeIn
+              w-1/3
+              py-2
+              backdrop-opacity-60
+              bg-glass
+              shadow-lg
+              border
+              rounded
+            "
           >
-            <div class="article-img">
-              <img src="./img/persona4.webp" alt="" />
+            <div class="article-img max-w-xs mx-auto py-4">
+              <img class="rounded" src="./img/persona3.webp" alt="" />
             </div>
             <div class="article-data" id="article-data">
-              <h2 id="article-data-name">Nombre</h2>
-              <h3 id="article-data-phone">telefono</h3>
-              <h4 id="article-data-address">Direccion</h4>
-              <button id="article-m" class="button" onclick="modificarDatos()">
+              <h2
+                class="text-xs text-gray-600 uppercase font-bold tracking-wider"
+                id="article-data-name"
+              >
+                Nombre
+              </h2>
+              <h3 class="mt-2 text-sm text-gray-600" id="article-data-phone">
+                telefono
+              </h3>
+              <h4 class="my-3 text-sm text-gray-600" id="article-data-address">
+                Direccion
+              </h4>
+              <button
+                id="article-m"
+                class="
+                  bg-teal-500
+                  hover:bg-teal-700
+                  border-teal-500
+                  hover:border-teal-700
+                  text-md
+                  border-4
+                  text-white
+                  py-1
+                  px-2
+                  rounded
+                "
+                onclick="modificarDatos()"
+              >
                 Modificar
               </button>
-              <button id="article-b" class="button" onclick="borrarDatos()">
+              <button
+                id="article-b"
+                class="
+                  bg-red-500
+                  hover:bg-red-700
+                  border-red-500
+                  hover:border-red-700
+                  text-md
+                  border-4
+                  text-white
+                  py-1
+                  px-2
+                  rounded
+                "
+                onclick="borrarDatos()"
+              >
                 Borrar
               </button>
               <input type="hidden" id="contacto-id" />
@@ -106,14 +372,20 @@
         <section id="section-jquery"></section>
       </aside>
     </main>
-    <footer class="footer">Copyright</footer>
+    <footer
+      class="footer bg-black text-white p-3 tracking-widest text-1xl uppercase"
+    >
+      Copyright
+    </footer>
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
     <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/querySelectors.js"></script>
+    <script src="./js/ajax.js"></script>
     <script src="./js/classes.js"></script>
     <script src="./js/functions.js"></script>
     <script src="./js/scripts.js"></script>

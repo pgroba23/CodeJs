@@ -1,6 +1,6 @@
 /* Referencias HTML */
 const submit = document.querySelector('#boton'),
-  ordernar = document.querySelector('#boton-ordenar'),
+  ajax = document.querySelector('#boton-ajax'),
   divCards = document.querySelector('#div-cards'),
   sectionDetalle = document.querySelector('#details'),
   addContact = document.querySelector('#add-contact'),

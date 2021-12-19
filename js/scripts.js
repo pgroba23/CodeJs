@@ -9,7 +9,7 @@
     resetValue(telefono);
     resetValue(celular);
     resetValue(direccion);
-    $('.form-div').slideDown('slow');
+    $('.form-div').fadeIn('slow');
   });
 
   closeBar.addEventListener('click', () => {
@@ -25,7 +25,7 @@
     colLeft.className = colLeft.className !== 'show' ? 'show col-left' : 'hide';
     window.setTimeout(() => {
       colLeft.style.display = 'block';
-      main.style.gridTemplateColumns = '1fr 6fr';
+      main.style.gridTemplateColumns = 'repeat(7, minmax(0, 1fr))';
       openBar.style.display = 'none';
     }, 0);
   });
