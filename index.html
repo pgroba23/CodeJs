@@ -59,7 +59,17 @@
       >
         <div class="add-contact flex justify-center mb-4" id="add-contact">
           <i
-            class="far fa-calendar-plus add-contact text-8xl cursor-pointer"
+            class="
+              far
+              fa-calendar-plus
+              add-contact
+              text-8xl
+              cursor-pointer
+              hover:text-slate-800 hover:-translate-y-0.5
+              transition
+              ease-in-out
+              duration-300
+            "
             title="Agregar contacto"
           ></i>
         </div>
@@ -206,13 +216,13 @@
             />
             <label
               class="block text-gray-700 text-sm font-bold mb-2"
-              for="imagen"
-              >Imagen</label
+              for="email"
+              >Email</label
             >
             <input
-              type="text"
-              name="imagen"
-              id="imagen"
+              type="email"
+              name="email"
+              id="email"
               class="
                 shadow
                 appearance-none
@@ -224,7 +234,6 @@
                 leading-tight
                 focus:outline-none focus:shadow-outline
               "
-              placeholder="Aun no funciona =)"
             />
           </div>
         </div>
@@ -272,7 +281,7 @@
               bg-teal-500
               hover:bg-teal-700
               border-teal-500
-              hover:border-red-700
+              hover:border-teal-700
               text-md
               border-4
               text-white

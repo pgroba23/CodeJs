@@ -13,4 +13,5 @@ const nombre = document.querySelector('#first-name'),
   apellido = document.querySelector('#last-name'),
   telefono = document.querySelector('#telefono'),
   celular = document.querySelector('#celular'),
-  direccion = document.querySelector('#direccion');
+  direccion = document.querySelector('#direccion'),
+  email = document.querySelector('#email');

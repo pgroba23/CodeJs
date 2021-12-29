@@ -21,6 +21,16 @@ const resetValue = (campo) => {
   campo.placeholder = '';
 };
 
+const resetAll = () => {
+  resetValue(nombre);
+  resetValue(apellido);
+  resetValue(telefono);
+  resetValue(celular);
+  resetValue(direccion);
+  resetValue(email);
+  submit.innerHTML = 'Agregar';
+};
+
 /*Funciones de impresion*/
 const resultadoWarn = (texto, valor) => {
   console.warn(texto, valor);
@@ -43,6 +53,7 @@ const modificarDatos = () => {
   telefono.value = `${contacto.telefono}`;
   celular.value = `${contacto.celular}`;
   direccion.value = contacto.direccion;
+  email.value = contacto.email;
 };
 
 const borrarDatos = async () => {
@@ -85,6 +96,7 @@ const cargaDatos = (id) => {
   //find del elemento en el arrayContactos
   const contacto = buscarContacto(id);
   // sectionDetalle.style.display = 'none';
+  resetAll();
   $(sectionDetalle).hide();
 
   document.querySelector(
@@ -93,9 +105,9 @@ const cargaDatos = (id) => {
   document.querySelector(
     '#article-data-phone'
   ).innerHTML = `📞 ${contacto.telefono} - ${contacto.celular}`;
-  document.querySelector(
-    '#article-data-address'
-  ).innerHTML = `📭 ${contacto.direccion}`;
+  document.querySelector('#article-data-address').innerHTML = `📭 ${
+    contacto.direccion
+  } - 📧 ${contacto.email || 'No informado'}`;
   document.querySelector('#contacto-id').value = contacto.id;
 
   window.setTimeout(() => {
@@ -120,6 +132,7 @@ const agregarContacto = () => {
       contacto.telefono = telefono.value;
       contacto.celular = celular.value;
       contacto.direccion = direccion.value;
+      contacto.email = email.value;
 
       divCards.innerHTML = '';
       agregarContactos(arrayContactos);
@@ -137,6 +150,7 @@ const agregarContacto = () => {
         telefono: telefono.value,
         celular: celular.value,
         direccion: direccion.value,
+        email: email.value,
       });
       contacto['id'] = arrayContactos.length + 1;
       arrayContactos.push(contacto); //Desafio: usar metodo de array
@@ -154,6 +168,7 @@ const agregarContacto = () => {
     resetValue(telefono);
     resetValue(celular);
     resetValue(direccion);
+    resetValue(email);
   }
 };
 
@@ -201,6 +216,7 @@ const validarForm = () => {
   if (!validator.isMobilePhone(telefono.value, 'any')) {
     Swal.fire({
       title: 'Nro de telefono erroneo',
+      toast: true,
     });
     return false;
   }
@@ -211,11 +227,19 @@ const validarForm = () => {
   if (!validator.isMobilePhone(celular.value, 'any')) {
     Swal.fire({
       title: 'Nro de celular erroneo',
+      toast: true,
     });
     return false;
   }
   if (validator.isEmpty(direccion.value)) {
     direccion.placeholder = 'Campo obligatorio';
+    return false;
+  }
+  if (!validator.isEmail(email.value)) {
+    Swal.fire({
+      title: 'Email en formato incorrecto',
+      toast: true,
+    });
     return false;
   }
   return true;

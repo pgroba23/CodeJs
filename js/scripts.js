@@ -4,11 +4,7 @@
   submit.addEventListener('click', () => agregarContacto(), false);
 
   addContact.addEventListener('click', () => {
-    resetValue(nombre);
-    resetValue(apellido);
-    resetValue(telefono);
-    resetValue(celular);
-    resetValue(direccion);
+    resetAll();
     $('.form-div').fadeIn('slow');
   });
 

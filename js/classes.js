@@ -5,6 +5,7 @@ class Contacto {
     this.telefono = dato.telefono;
     this.celular = dato.celular;
     this.direccion = dato.direccion;
+    this.email = dato.email;
     this.id = 0;
   }
 
