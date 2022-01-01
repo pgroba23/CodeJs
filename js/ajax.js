@@ -2,6 +2,7 @@ $(ajax).click(() => {
   $.ajax({
     url: 'https://randomuser.me/api',
     success: function (data) {
+      /** Trate de usar RegEx pero no lo pude hacer funcionar nunca ja! */
       const phone = data['results'][0]['phone']
         .replaceAll('-', '')
         .replaceAll('(', '')
@@ -22,9 +23,10 @@ $(ajax).click(() => {
         direccion: `${data['results'][0]['location']['street']['name']} ${data['results'][0]['location']['street']['number']}`,
         email: data['results'][0]['email'],
       });
-      contacto['id'] = arrayContactos.length + 1;
-      arrayContactos.push(contacto); //Desafio: usar metodo de array
-      //contacto.imprime();
+      contacto['id'] = arrayContactos[arrayContactos.length - 1]
+        ? arrayContactos[arrayContactos.length - 1].id + 1
+        : 1;
+      arrayContactos.push(contacto);
       setStorage(arrayContactos);
 
       agregarContactoLista(contacto);

@@ -62,11 +62,8 @@ const borrarDatos = async () => {
     icon: 'question',
     confirmButtonText: 'Si!!',
     footer: '<b><span style="color:red">No hay vuelta atras!</span></b>',
-    backdrop: true,
     toast: true,
-    allowOutsideClick: false,
     allowEscapeKey: false,
-    allowEnterKey: false,
     stopKeydownPropagation: false,
     showCancelButton: true,
     cancelButtonText: 'No!!',
@@ -89,6 +86,7 @@ const borrarDatos = async () => {
       icon: 'success',
       title: 'Contacto borrado',
     });
+    resetAll();
   }
 };
 
@@ -152,7 +150,9 @@ const agregarContacto = () => {
         direccion: direccion.value,
         email: email.value,
       });
-      contacto['id'] = arrayContactos.length + 1;
+      contacto['id'] = arrayContactos[arrayContactos.length - 1]
+        ? arrayContactos[arrayContactos.length - 1].id + 1
+        : 1;
       arrayContactos.push(contacto); //Desafio: usar metodo de array
       //contacto.imprime();
       setStorage(arrayContactos);
