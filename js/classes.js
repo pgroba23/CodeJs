@@ -1,3 +1,4 @@
+//Main class
 class Contacto {
   constructor(dato) {
     this.nombre = dato.nombre;

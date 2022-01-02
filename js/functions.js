@@ -3,6 +3,7 @@ const getStorage = () => JSON.parse(localStorage.getItem('contactos')),
   setStorage = (contactos) =>
     localStorage.setItem('contactos', JSON.stringify(contactos));
 
+//Alert con estilos
 const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
@@ -21,6 +22,7 @@ const resetValue = (campo) => {
   campo.placeholder = '';
 };
 
+//Resetea formulario (todos los campos)
 const resetAll = () => {
   resetValue(nombre);
   resetValue(apellido);
@@ -39,6 +41,7 @@ const resultadoLog = (texto, valor) => {
   console.log(texto, valor);
 };
 
+//Modificar contacto
 const modificarDatos = () => {
   const contacto = buscarContacto(
     document.querySelector('#contacto-id').value * 1
@@ -56,6 +59,7 @@ const modificarDatos = () => {
   email.value = contacto.email;
 };
 
+//Borrar contacto
 const borrarDatos = async () => {
   const { value: respuesta } = await Swal.fire({
     title: 'Esta seguro que desea borrar?',
@@ -90,6 +94,7 @@ const borrarDatos = async () => {
   }
 };
 
+//Carga detalle del contacto
 const cargaDatos = (id) => {
   //find del elemento en el arrayContactos
   const contacto = buscarContacto(id);
@@ -114,10 +119,12 @@ const cargaDatos = (id) => {
   }, 500);
 };
 
+//Busca un contacto en base al id
 const buscarContacto = (id) => {
   return arrayContactos.find((e) => e.id === id);
 };
 
+//Segun el origen agrega o modifica un contacto
 const agregarContacto = () => {
   if (validarForm()) {
     if (submit.innerHTML === 'Modificar') {
@@ -172,6 +179,7 @@ const agregarContacto = () => {
   }
 };
 
+//agrega el contacto a al menu
 const agregarContactoLista = (contacto) => {
   const div = document.createElement('div'),
     img = document.createElement('img'),
@@ -189,6 +197,7 @@ const agregarContactoLista = (contacto) => {
   divCards.append(div);
 };
 
+//Levanta contactos del array y los agrega al menu de la izq
 const agregarContactos = (arrayContactos) => {
   for (const contacto of arrayContactos) {
     agregarContactoLista(contacto);
@@ -199,6 +208,7 @@ const agregarContactos = (arrayContactos) => {
 let arrayContactos = getStorage() ? getStorage() : [];
 arrayContactos ? agregarContactos(arrayContactos) : null;
 
+//validaciones para el Form
 const validarForm = () => {
   if (validator.isEmpty(nombre.value)) {
     nombre.placeholder = 'Campo obligatorio';
@@ -245,7 +255,7 @@ const validarForm = () => {
   return true;
 };
 
-/* Codigo jQuery que luego sera removido =) */
+//Funcion para ocultar form
 $(() => {
   $('#boton-jquery').click(() => {
     $('.form-div').fadeOut('slow');

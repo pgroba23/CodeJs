@@ -1,3 +1,5 @@
+//Ajax para carga de contacto desde una Api: randomuser.com
+
 $(ajax).click(() => {
   $.ajax({
     url: 'https://randomuser.me/api',
